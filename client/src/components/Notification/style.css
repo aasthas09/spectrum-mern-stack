@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+body {
+  margin: 0;
+  background-color: #eacddf;
+  text-align: center;
+  color: #474747;
+}
+
+.notification{
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: #f1f1f1;
+    width: 350px;
+    border-radius: 0 0 0 50px;
+    box-shadow: 0 0 10px #aaaaaa;
+    height: 100vh;
+    overflow: auto;
+  }
+
+.top{
+  width: -webkit-fill-available;
+  height: 32px;
+  background-color: #474747;
+  color: #eacddf;
+  top: 0px;
+  font-size: 22px;
+  position: absolute;
+  text-align: right;
+  padding: 10px 40px 0 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 20px;
+  justify-content: end;
+}
+
+.profile-pic{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #eacddf;
+  align-self: center;
+}
+
+.top .profile-pic{
+  width: 22px;
+  height: 22px;
+  align-self: auto;
+}
+
+.noti-bar{
+  margin-top: 60px;
+  padding: 0 4px;
+}
+
+.noti-div{
+  overflow: hidden;
+  margin: 20px 0px;
+  border-bottom: 3px solid #eacddf;
+  text-align: left;
+  color: #474747;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 20px;
+  /* background-color: #aaaaaa; */
+  /* opacity: 50%; */
+  padding: 0 15px 10px;
+}
+
+.noti-div p{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.notification::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.notification::-webkit-scrollbar-track {
+  background: #474747; 
+}
+ 
+/* Handle */
+.notification::-webkit-scrollbar-thumb {
+  background: #cccccc93; 
+}
+
+/* Handle on hover */
+.notification::-webkit-scrollbar-thumb:hover {
+  background: #cccccce7; 
+}
