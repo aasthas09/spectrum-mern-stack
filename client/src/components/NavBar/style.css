@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+body {
+  margin: 0;
+  background-color: #eacddf;
+  text-align: center;
+  color: #474747;
+}
+
+ul{
+  list-style: none;
+  margin-top: 45px;
+  padding: 0 4px;
+}
+
+li{
+  font-size: 22px; 
+  margin-bottom: 15px;
+  padding: 10px 0 10px 40px;
+}
+
+.home{
+  background-color: #eacddf;
+}
+
+li:hover{
+  border-radius: 0 25px 25px 0;
+  background-color: #eacddf;
+}
+
+.left{
+    text-align: left;
+    position: fixed;
+    width: 240px;
+    left: 0;
+    top: 0;
+    background-color: #f1f1f1;
+    border-radius: 0 50px 0 0;
+    box-shadow: 0 0 10px #aaaaaa;
+    height: 100vh;
+  }
+
+  .left h1{
+    margin: 35px 40px;
+    color: #eacddf;
+    font-weight: 400;
+    font-size: 44px;
+    font-family: 'Sacramento', cursive;
+  }
+  
+  .side-span{
+    display: block;
+    margin-left: 40px;
+    margin-top: -28px;
+}
+
+.bottom{
+  width: 100%;
+  height: 42px;
+  background-color: #474747;
+  color: #eacddf;
+  bottom: 0px;
+  position: absolute;
+}
+
+.bottom p{
+  font-size: 22px;
+  margin: 10px 40px;
+}
+
+#uploadForm{
+  display: grid;
+  grid-row-gap: 15px;
+  /* text-align: left; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label{
+  font-size: 15px;
+  color: #474747;
+}
+
+#uploadForm .add{
+  color: #eacddf;
+  justify-self: center;
+  font-size: 40px;
+}
+
+input[type="submit"]{
+  background-color: #eacddf; 
+  border: none;
+  padding: 15px 0;
+  cursor: pointer;
+  color: #474747;
+  border-radius: 25px;
+}
+
+textarea{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 2px solid #eacddf;
+  border-radius: 3px;
+  outline: none;
+  padding: 5px 10px 0;
+  color: #aaaaaa;
+}
+
+.grid-div{
+  display: grid;
+}
+
+input[type="file"]{
+    width: 100%;
+    position: absolute;
+    height: 40px;
+    cursor: pointer;
+    content-visibility: hidden;
+}
