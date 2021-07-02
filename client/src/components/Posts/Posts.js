@@ -13,7 +13,7 @@ const Posts = ({ setCurrentId }) => {
   return (
 
     
-    !posts.length ? <CircularProgress  value={100} style={{'color': 'white'}}/> : (
+    !posts.length ? <CircularProgress value={100} style={{'color': 'white'}}/> : (
       <Grid  container alignItems="center" spacing={3}>
         {posts.map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
