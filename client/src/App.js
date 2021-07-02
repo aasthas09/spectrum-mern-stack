@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState,useEffect} from "react";
 import {Grid, Container} from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
@@ -9,6 +9,7 @@ import Posts from "./components/Posts/Posts.js";
 import Notification from "./components/Notification/Notification.jsx";
 
 function App(){
+     const [currentId, setCurrentId] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function App(){
                 <NavBar />
             </Grid>
             <Grid item sm={6}>
-                <Posts />
+                <Posts currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
             <Grid item sm={3}>
                 <Notification />
