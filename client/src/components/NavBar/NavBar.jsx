@@ -62,6 +62,7 @@ function NavBar(){
                         <div className="grid-div">
                             <IoAddCircleSharp className="add" />
                             <FileBase 
+                                type="file"
                                 multiple={false}
                                 onDone={({base64})=> setPostData({...postData, selectedFile: base64})}
                             />
@@ -73,7 +74,8 @@ function NavBar(){
                 </MuiDialogContent>
             </Dialog>
             <div className="bottom">
-                <p><IoLogOut /><span className="side-span">Logout</span></p>
+                <p><IoLogOut /><span className="side-span">
+                    Logout</span></p>
             </div>
         </div>
     );
