@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -10,7 +11,7 @@ import { createPost } from "../../actions/posts";
 
 //icons
 import {MdHome, MdAddAPhoto, MdAccountCircle, MdSettings} from 'react-icons/md';
-import { IoLogOut, IoAddCircleSharp } from "react-icons/io5";
+import { IoLogOut, IoLogIn, IoAddCircleSharp } from "react-icons/io5";
 
 //stylesheet
 import './style.css';
@@ -32,6 +33,8 @@ function NavBar(){
         e.preventDefault();
         dispatch(createPost(postData));
     };
+
+    const user = null;
   
 
     return(
@@ -74,8 +77,17 @@ function NavBar(){
                 </MuiDialogContent>
             </Dialog>
             <div className="bottom">
-                <p><IoLogOut /><span className="side-span">
-                    Logout</span></p>
+                {user ? (
+                    <div>
+                        <p><IoLogOut /><span className="side-span">Logout</span></p>
+                        
+                    </div>
+                    ) : (
+                    <div>
+                        <p><IoLogIn /><span className="side-span"><Link to="/auth">SignIn</Link></span></p>
+                    </div>
+                    )
+                }
             </div>
         </div>
     );
