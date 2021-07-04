@@ -1,134 +1,176 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
+import { useHistory } from 'react-router-dom';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Input from './Input';
+import useStyles from './styles';
+import Icon from './icon';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
- const Auth = () => {
+
+const Auth = () => {
   const classes = useStyles();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword); 
+  const history = useHistory();
+  
+
+  const handleSubmit = () => {
+
+  }
+
+  const handleChange = () => {
+
+  }
+
+  const switchMode = () => {
+    //setForm(initialState);
+    setIsSignup((prevIsSignup) => !prevIsSignup);
+    setShowPassword(false);
+  }
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: 'AUTH', data: { result, token } });
+
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
+
+  
+  
+
   return (
-            <Grid container component="main" className={classes.root}>
-              <CssBaseline />
-              
-              <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                  <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                  </Avatar>
-                  <Typography component="h1" variant="h5">
-                    Sign in
-                  </Typography>
-                  <form className={classes.form} noValidate>
-                    <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                      autoFocus
-                    />
-                    <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox value="remember" color="primary" />}
-                      label="Remember me"
-                    />
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                    >
-                      Sign In
-                    </Button>
-                    <Grid container>
-                      <Grid item xs>
-                        <Link href="#" variant="body2">
-                          Forgot password?
-                        </Link>
-                      </Grid>
-                      <Grid item>
-                        <Link href="#" variant="body2">
-                          {"Don't have an account? Sign Up"}
-                        </Link>
-                      </Grid>
-                    </Grid>
-                    <Box mt={5}>
-                      <Copyright />
-                    </Box>
-                  </form>
-                </div>
-              </Grid>
-              <Grid item xs={false} sm={4} md={7} className={classes.image} />
-            </Grid>
-          );
+    <Container component="main" maxWidth="md" >
     
-};
+    <Grid item xs={false} sm={4} md={7} className={classes.image} />
+    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6}>
+      <div className={classes.paper}>
+        
+        
+        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
+        <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+                { isSignup && (
+                <>
+                <Input name="firstName" label="First Name" handleChange={handleChange} type="text" autoFocus half />
+                <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+                </>
+                )}
+                <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+                { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
+                <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="I agree to the Terms and Conditions." />
+           </Grid>
+
+           <Grid container >
+            <Grid item>
+            <Button type="submit"  variant="contained" color="primary" className={classes.submit}  >
+                { isSignup ? 'Sign Up' : 'Sign In' }
+            </Button>
+            <Button onClick={switchMode} justify="flex-end" type="submit"  variant="contained" color="primary" className={classes.submit}>
+                { isSignup ? 'Sign In' : 'Sign Up' }
+            </Button>
+            </Grid>
+            </Grid>
+            <GoogleLogin
+            clientId="395169917947-4f07i7552sgf09nqsm03gncnojedud2o.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
+                Google Sign In
+              </Button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleError}
+            cookiePolicy="single_host_origin"
+            />
+           
+        </form>
+      </div>
+    </Grid>
+  </Container>
+  
+  )
+}
+//     <Container component="main" maxWidth="xs">
+//         <Grid item xs={false} sm={4} md={7} className={classes.image} />
+//       <Grid container spacing={2} component={Paper} elevation={6} square>
+
+     
+        
+      
+//       <Paper className={classes.paper} elevation={3}>
+        
+//         <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
+        
+//         <form className={classes.form} onSubmit={handleSubmit}>
+//           <Grid container spacing={2}>
+//             { isSignup && (
+//             <>
+//               <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+//               <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+//             </>
+//             )}
+//             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+//             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+//             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
+//             <FormControlLabel
+//               control={<Checkbox value="remember" color="primary" />}
+//               label="I agree to the Terms and Conditions."
+//             />
+//           </Grid>
+          
+//           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
+//             { isSignup ? 'Sign Up' : 'Sign In' }
+//           </Button>
+          
+//           {/* <GoogleLogin
+//             clientId="564033717568-e5p23rhvcs4i6kffgsbci1d64r8hp6fn.apps.googleusercontent.com"
+//             render={(renderProps) => (
+//               <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
+//                 Google Sign In
+//               </Button>
+//             )}
+//             onSuccess={googleSuccess}
+//             onFailure={googleError}
+//             cookiePolicy="single_host_origin" />*/}
+          
+            
+//           <Grid container justify="flex-start">
+//             <Grid item>
+//             <Button onClick={switchMode} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+//             { isSignup ? 'Sign In' : 'Sign Up' }
+//             </Button>
+//               {/* <Button onClick={switchMode}>
+//                 { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
+//               </Button> */}
+              
+//             </Grid>
+//           </Grid>
+          
+//         </form>
+       
+//       </Paper>
+//       </Grid>
+//     </Container>
+//   );
+// };
 
 export default Auth;
+ 

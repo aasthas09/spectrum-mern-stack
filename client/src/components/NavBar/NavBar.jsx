@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -21,6 +21,8 @@ function NavBar(){
     
     const [postData, setPostData] = React.useState({ message: '', selectedFile: ''});
     const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -34,9 +36,26 @@ function NavBar(){
         dispatch(createPost(postData));
     };
 
-    const user = null;
-  
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    console.log(user);
 
+    const logout = () => {
+        dispatch({type: 'LOGOUT'});
+        history.push('/Auth');
+        setUser(null);
+    };
+
+    useEffect(() => {
+        const token = user?.token;
+    
+        //JWT ...
+    
+        setUser(JSON.parse(localStorage.getItem('profile')));
+      }, [location]);
+
+    
+    
+    
     return(
         <div className="left">
             <header><h1>Spectrum</h1></header>
@@ -79,7 +98,7 @@ function NavBar(){
             <div className="bottom">
                 {user ? (
                     <div>
-                        <p><IoLogOut /><span className="side-span">Logout</span></p>
+                        <p><IoLogOut /><span className="side-span" onClick={logout}>Logout</span></p>
                         
                     </div>
                     ) : (
