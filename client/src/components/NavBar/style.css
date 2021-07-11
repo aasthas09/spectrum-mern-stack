@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
-body {
-  margin: 0;
-  background-color: #eacddf;
-  text-align: center;
-  color: #474747;
-}
-
 ul{
   list-style: none;
   margin-top: 45px;
@@ -19,30 +12,42 @@ li{
   padding: 10px 0 10px 40px;
 }
 
-.home{
-  background-color: #eacddf;
+a{
+  text-decoration: none;
+  color: inherit;
 }
+
+/* .home{
+  background-color: #cacfec;
+} */
+
+/* a:active{
+  color: #cacfec;
+} */
 
 li:hover{
   border-radius: 0 25px 25px 0;
-  background-color: #eacddf;
+  /* background-color: #cacfec; */
+  background-color: #cacfec;
 }
 
-.left{
+.NavBar{
+    font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: left;
     position: fixed;
     width: 240px;
     left: 0;
     top: 0;
-    background-color: #f1f1f1;
+    background-color: white;
     border-radius: 0 50px 0 0;
     box-shadow: 0 0 10px #aaaaaa;
     height: 100vh;
   }
 
-  .left h1{
+.NavBar h1{
     margin: 35px 40px;
-    color: #eacddf;
+    /* color: #cacfec; */
+    color: #8089c1;
     font-weight: 400;
     font-size: 44px;
     font-family: 'Sacramento', cursive;
@@ -58,7 +63,8 @@ li:hover{
   width: 100%;
   height: 42px;
   background-color: #474747;
-  color: #eacddf;
+  /* color: #cacfec; */
+  color: #e4e7f9;
   bottom: 0px;
   position: absolute;
 }
@@ -81,13 +87,13 @@ label{
 }
 
 #uploadForm .add{
-  color: #eacddf;
+  color: #cacfec;
   justify-self: center;
   font-size: 40px;
 }
 
 input[type="submit"]{
-  background-color: #eacddf; 
+  background-color: #cacfec; 
   border: none;
   padding: 15px 0;
   cursor: pointer;
@@ -97,7 +103,7 @@ input[type="submit"]{
 
 textarea{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border: 2px solid #eacddf;
+  border: 2px solid #cacfec;
   border-radius: 3px;
   outline: none;
   padding: 5px 10px 0;
@@ -109,7 +115,7 @@ textarea{
 }
 
 input[type="file"]{
-    width: 100%;
+    width: 90%;
     position: absolute;
     height: 40px;
     cursor: pointer;

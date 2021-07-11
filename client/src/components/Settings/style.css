@@ -1,0 +1,73 @@
+#settings h1{
+    margin-top: 0;
+}
+
+#settings div{
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    box-shadow: 0 0 10px #aaaaaa;
+    padding: 50px 0;
+}
+
+#settings div form{
+    display: grid;
+    width: min-content;
+    margin: auto;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+    row-gap: 40px;
+    align-items: center;
+    text-align: left;
+}
+
+#settings div form input[type="text"], input[type="email"]{
+    height: 32px;
+}
+
+#settings div form input[type="text"], input[type="email"], textarea{
+    background-color: #cacfec;
+    width: 500px;
+    border-radius: 25px;
+    border: none;
+    padding: 1px 20px;
+    outline: none;
+    font-size: 16px;
+    color: #474747;
+}
+
+#settings div form img{
+    height: 305px;
+}
+
+#settings div form input[type="file"] {
+    width: 50%;
+    position: absolute;
+    height: 305px;
+    content-visibility: hidden;
+}
+
+#settings div form #profile-pic{
+    border-radius: 50%;
+    height: 150px;
+}
+
+#settings div form input input[type="file"]#profile{
+    height: 150px;
+}
+
+#settings .action-buttons{
+    display: grid;
+    grid-template-columns: auto auto;
+    box-shadow: none;
+    justify-items: center;width: 50%;
+}
+
+#settings div input[type="submit"] {
+    background-color: #8089c1;
+    width: 150px;
+    /* height: 30px; */
+    border-radius: 5px;
+    border: none;
+    color: white;
+}

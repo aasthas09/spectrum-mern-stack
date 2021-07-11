@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
-body {
-  margin: 0;
-  background-color: #eacddf;
-  text-align: center;
-  color: #474747;
-}
-
 .notification{
+    display: none;
     position: fixed;
     right: 0;
     top: 0;
